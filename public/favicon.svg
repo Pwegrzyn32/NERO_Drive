@@ -1,24 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" fill="#080808"/>
-  <rect x="0" y="28" width="32" height="2" fill="#c9a455"/>
+  <rect width="32" height="32" rx="6" fill="#080808"/>
   <text
     x="16"
-    y="23"
+    y="24"
     text-anchor="middle"
-    font-family="Georgia, serif"
-    font-size="20"
+    font-family="'Josefin Sans', 'Century Gothic', 'Futura', sans-serif"
+    font-size="24"
     font-weight="600"
     letter-spacing="1"
     fill="#ffffff"
   >N</text>
-  <text
-    x="16"
-    y="29.5"
-    text-anchor="middle"
-    font-family="Arial, sans-serif"
-    font-size="5"
-    font-weight="700"
-    letter-spacing="3"
-    fill="#c9a455"
-  >DRIVE</text>
 </svg>
