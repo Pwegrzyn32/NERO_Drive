@@ -5,7 +5,7 @@
   publish = "dist/nero-drive/browser"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
 
 # Use the Angular runtime plugin (v4 required for Angular 22)
 [[plugins]]
