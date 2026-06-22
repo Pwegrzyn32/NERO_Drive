@@ -1,0 +1,54 @@
+<nav class="navbar" [class.scrolled]="isScrolled()">
+  <div class="nav-inner">
+    <!-- Logo -->
+    <a class="nav-logo" (click)="scrollTo('home')">
+      <span class="logo-nero">NERO</span>
+      <span class="logo-drive">DRIVE</span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links">
+      <li><a (click)="scrollTo('home')">{{ 'nav.home' | translate }}</a></li>
+      <li><a (click)="scrollTo('car')">{{ 'nav.car' | translate }}</a></li>
+      <li><a (click)="scrollTo('packages')">{{ 'nav.packages' | translate }}</a></li>
+      <li><a (click)="scrollTo('services')">{{ 'nav.services' | translate }}</a></li>
+      <li><a (click)="scrollTo('gallery')">{{ 'nav.gallery' | translate }}</a></li>
+      <li><a (click)="scrollTo('contact')" class="nav-contact-cta">{{ 'nav.contact' | translate }}</a></li>
+      <li>
+        <button class="lang-toggle" (click)="ts.toggle()" [attr.aria-label]="'nav.langLabel' | translate">
+          {{ 'nav.langLabel' | translate }}
+        </button>
+      </li>
+    </ul>
+
+    <!-- Hamburger -->
+    <button
+      class="hamburger"
+      [class.open]="menuOpen()"
+      (click)="toggleMenu()"
+      aria-label="Toggle menu"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" [class.open]="menuOpen()">
+    <ul>
+      <li><a (click)="scrollTo('home')">{{ 'nav.home' | translate }}</a></li>
+      <li><a (click)="scrollTo('car')">{{ 'nav.car' | translate }}</a></li>
+      <li><a (click)="scrollTo('packages')">{{ 'nav.packages' | translate }}</a></li>
+      <li><a (click)="scrollTo('services')">{{ 'nav.services' | translate }}</a></li>
+      <li><a (click)="scrollTo('gallery')">{{ 'nav.gallery' | translate }}</a></li>
+      <li><a (click)="scrollTo('contact')">{{ 'nav.contact' | translate }}</a></li>
+      <li>
+        <button class="lang-toggle lang-toggle--mobile" (click)="ts.toggle()">
+          {{ 'nav.langLabel' | translate }}
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+

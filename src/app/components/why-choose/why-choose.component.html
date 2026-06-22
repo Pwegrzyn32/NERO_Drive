@@ -1,0 +1,29 @@
+<section class="why-choose" id="why">
+  <div class="container">
+
+    <div class="why-header">
+      <span class="section-label reveal" scrollAnimate>{{ 'why.label' | translate }}</span>
+      <h2 class="section-title reveal delay-1" scrollAnimate>
+        {{ 'why.title1' | translate }}<br><em>{{ 'why.title2' | translate }}</em>
+      </h2>
+      <div class="gold-line reveal delay-2" scrollAnimate></div>
+    </div>
+
+    <div class="reasons-grid">
+      @for (reason of reasons; track reason.number; let i = $index) {
+        <div
+          class="reason-item reveal"
+          scrollAnimate
+          [style.transition-delay]="(i * 0.1) + 's'"
+        >
+          <div class="reason-number">{{ reason.number }}</div>
+          <div class="reason-content">
+            <h3 class="reason-title">{{ reason.titleKey | translate }}</h3>
+            <p class="reason-desc">{{ reason.descKey | translate }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,14 @@
+[build]
+  # Build the Angular app (prerendered static output)
+  command = "npm run build"
+  # Angular outputs the static site into the browser sub-folder
+  publish = "dist/nero-drive/browser"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback: let Angular handle any unknown path on the client
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

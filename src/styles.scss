@@ -1,0 +1,229 @@
+// ============================================================
+// NERO DRIVE – Global Styles
+// ============================================================
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  // Colors
+  --color-black:      #080808;
+  --color-dark:       #0d0d0d;
+  --color-card:       #111111;
+  --color-card-hover: #161616;
+  --color-border:     #1e1e1e;
+  --color-gold:       #c9a455;
+  --color-gold-light: #e8c97a;
+  --color-gold-dim:   rgba(201, 164, 85, 0.15);
+  --color-white:      #ffffff;
+  --color-off-white:  #f0ede8;
+  --color-gray-light: #c8c8c8;
+  --color-gray:       #888888;
+  --color-gray-dark:  #444444;
+
+  // Typography
+  --font-heading: 'Josefin Sans', sans-serif;
+  --font-body:    'Raleway', sans-serif;
+
+  // Spacing & layout
+  --section-padding-v: 110px;
+  --container-max:     1280px;
+  --container-pad:     40px;
+
+  // Motion
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition:  0.4s var(--ease-smooth);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+// ── Container ──────────────────────────────────────────────
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+}
+
+// ── Section header helpers ──────────────────────────────────
+.section-label {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 20px;
+
+  em {
+    font-style: normal;
+    color: var(--color-gold-light);
+  }
+}
+
+.section-desc {
+  font-size: 0.95rem;
+  color: var(--color-gray);
+  max-width: 580px;
+  line-height: 1.9;
+}
+
+// ── Gold divider ────────────────────────────────────────────
+.gold-line {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-gold), transparent);
+  margin: 22px 0;
+}
+
+// ── Buttons ─────────────────────────────────────────────────
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 40px;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: color var(--transition);
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-gold);
+    transform: translateX(-101%);
+    transition: transform var(--transition);
+    z-index: -1;
+  }
+
+  &:hover {
+    color: var(--color-black);
+    &::after { transform: translateX(0); }
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 40px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: all var(--transition);
+  cursor: pointer;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+// ── Scroll-reveal animation classes ────────────────────────
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.delay-1 { transition-delay: 0.1s !important; }
+.delay-2 { transition-delay: 0.2s !important; }
+.delay-3 { transition-delay: 0.3s !important; }
+.delay-4 { transition-delay: 0.4s !important; }
+.delay-5 { transition-delay: 0.5s !important; }
+
+// ── Scrollbar ───────────────────────────────────────────────
+::-webkit-scrollbar       { width: 3px; }
+::-webkit-scrollbar-track { background: var(--color-black); }
+::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 2px; }

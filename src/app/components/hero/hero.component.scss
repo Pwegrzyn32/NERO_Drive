@@ -1,0 +1,190 @@
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+// ── Background ────────────────────────────────────────────────
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  // Dark gradient fallback when no photo is present
+  background:
+    radial-gradient(ellipse at 60% 50%, #1a1007 0%, transparent 60%),
+    linear-gradient(165deg, #0e0e0e 0%, #080808 40%, #0a0800 100%);
+
+  // Subtle noise texture overlay
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    z-index: 1;
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 8, 8, 0.35) 0%,
+    rgba(8, 8, 8, 0.45) 50%,
+    rgba(8, 8, 8, 0.8) 100%
+  );
+  z-index: 2;
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  // Subtle Ken Burns effect
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+// ── Content ───────────────────────────────────────────────────
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 20px;
+  padding-top: 160px;
+  max-width: 900px;
+
+  @media (max-width: 768px) {
+    padding-top: 120px;
+  }
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.88;
+  margin-bottom: 24px;
+
+  .hero-title-nero {
+    font-family: var(--font-heading);
+    font-size: clamp(5rem, 15vw, 12rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--color-white);
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.5s forwards;
+  }
+
+  .hero-title-drive {
+    font-family: var(--font-body);
+    font-size: clamp(0.75rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    letter-spacing: 0.65em;
+    color: var(--color-gold);
+    margin-top: 6px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.7s forwards;
+  }
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.65rem, 1.4vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.9s forwards;
+  margin-top: 10px;
+}
+
+// ── Scroll indicator ─────────────────────────────────────────
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  animation: fadeIn 1s ease 2s forwards;
+
+  .scroll-text {
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--color-gray);
+  }
+
+  .scroll-track {
+    width: 1px;
+    height: 50px;
+    background: rgba(255,255,255,0.12);
+    position: relative;
+    overflow: hidden;
+
+    .scroll-thumb {
+      position: absolute;
+      top: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--color-gold);
+      animation: scrollDown 1.8s ease-in-out infinite;
+    }
+  }
+}
+
+// ── Keyframes ─────────────────────────────────────────────────
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scrollDown {
+  0%   { top: -100%; }
+  100% { top: 100%; }
+}
+
+// ── Responsive ────────────────────────────────────────────────
+@media (max-width: 480px) {
+  .hero-ctas {
+    flex-direction: column;
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+    }
+  }
+}

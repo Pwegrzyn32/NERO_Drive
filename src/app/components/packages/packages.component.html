@@ -1,0 +1,53 @@
+<section class="packages" id="packages">
+  <div class="container">
+
+    <div class="packages-header">
+      <span class="section-label reveal" scrollAnimate>{{ 'pkg.label' | translate }}</span>
+      <h2 class="section-title reveal delay-1" scrollAnimate>
+        {{ 'pkg.title1' | translate }} <em>{{ 'pkg.title2' | translate }}</em>
+      </h2>
+      <div class="gold-line reveal delay-2" scrollAnimate></div>
+      <p class="section-desc reveal delay-2" scrollAnimate>{{ 'pkg.desc' | translate }}</p>
+    </div>
+
+    <div class="packages-grid">
+      @for (pkg of packages; track pkg.id; let i = $index) {
+        <div
+          class="package-card reveal"
+          [class.package-card--featured]="pkg.featured"
+          scrollAnimate
+          [style.transition-delay]="(i * 0.15) + 's'"
+        >
+          @if (pkg.featured) {
+            <div class="featured-badge">{{ 'pkg.popular' | translate }}</div>
+          }
+          <div class="package-header">
+            <h3 class="package-name">{{ pkg.name }}</h3>
+            <div class="package-price">
+              <span class="price-amount">{{ pkg.price }}</span>
+              <span class="price-currency">{{ pkg.currency }}</span>
+            </div>
+            <p class="package-desc">{{ pkg.descKey | translate }}</p>
+          </div>
+          <div class="package-divider"></div>
+          <ul class="package-items">
+            @for (key of pkg.itemKeys; track key) {
+              <li class="package-item">
+                <svg class="check-icon" width="14" height="10" viewBox="0 0 14 10" fill="none">
+                  <path d="M1.5 5L5.5 9L12.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {{ key | translate }}
+              </li>
+            }
+          </ul>
+          <button class="package-cta" (click)="selectPackage(pkg.name)">
+            {{ 'pkg.select' | translate }}
+          </button>
+        </div>
+      }
+    </div>
+
+    <p class="packages-note reveal" scrollAnimate>{{ 'pkg.note' | translate }}</p>
+
+  </div>
+</section>

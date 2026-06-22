@@ -1,0 +1,183 @@
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Left: Info -->
+      <div class="contact-info">
+        <span class="section-label reveal" scrollAnimate>{{ 'con.label' | translate }}</span>
+        <h2 class="section-title reveal delay-1" scrollAnimate>
+          {{ 'con.title1' | translate }}<br><em>{{ 'con.title2' | translate }}</em>
+        </h2>
+        <div class="gold-line reveal delay-2" scrollAnimate></div>
+        <p class="contact-intro reveal delay-2" scrollAnimate>{{ 'con.intro' | translate }}</p>
+
+        <div class="contact-details reveal delay-3" scrollAnimate>
+          <a class="contact-item" href="tel:+48784333583">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 3h3.5l1.5 4-2 1.5c1 2 2 3 4 4L11.5 10.5l4 1.5V15c0 .6-.4 1-1 1C5.8 16 2 12.2 2 4c0-.6.4-1 1-1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <span class="contact-item-label">{{ 'con.phone' | translate }}</span>
+              <span class="contact-item-value">+48 784 333 583</span>
+            </div>
+          </a>
+          <a class="contact-item" href="mailto:nerodrive.giulia&#64;gmail.com">
+            <div class="contact-item-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <rect x="2" y="4" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M2 5l7 6 7-6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <span class="contact-item-label">{{ 'con.email' | translate }}</span>
+              <span class="contact-item-value">nerodrive.giulia&#64;gmail.com</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="contact-social reveal delay-4" scrollAnimate>
+          <span class="social-label">{{ 'con.follow' | translate }}</span>
+          <div class="social-links">
+            <a href="https://www.instagram.com/nero_drive" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-form-panel reveal-right" scrollAnimate>
+
+        @if (selectedPackageLabel()) {
+          <div class="package-selected-banner">
+            <svg width="14" height="14" viewBox="0 0 14 10" fill="none">
+              <path d="M1.5 5L5.5 9L12.5 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Wybrany pakiet: <strong>{{ selectedPackageLabel() }}</strong>
+          </div>
+        }
+
+        @if (!submitted()) {
+          <form class="contact-form" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+
+            <!-- Honeypot: hidden from users, ignored by humans, often filled by bots -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" [(ngModel)]="formData.website" tabindex="-1" autocomplete="off"/>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">{{ 'con.f.name' | translate }}</label>
+                <input id="name" name="name" type="text" [(ngModel)]="formData.name" required minlength="2"
+                  autocomplete="name" #nameField="ngModel" [class.invalid]="nameField.invalid && nameField.touched"
+                  placeholder="Jan Kowalski"/>
+                @if (nameField.invalid && nameField.touched) {
+                  <span class="field-error">{{ 'con.err.name' | translate }}</span>
+                }
+              </div>
+              <div class="form-group">
+                <label for="phone">{{ 'con.f.phone' | translate }}</label>
+                <input id="phone" name="phone" type="tel" [(ngModel)]="formData.phone" required
+                  autocomplete="tel" #phoneField="ngModel" [class.invalid]="phoneField.invalid && phoneField.touched"
+                  placeholder="+48 000 000 000"/>
+                @if (phoneField.invalid && phoneField.touched) {
+                  <span class="field-error">{{ 'con.err.phone' | translate }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">{{ 'con.f.email' | translate }}</label>
+                <input id="email" name="email" type="email" [(ngModel)]="formData.email" required email
+                  autocomplete="email" #emailField="ngModel" [class.invalid]="emailField.invalid && emailField.touched"
+                  placeholder="jan&#64;example.com"/>
+                @if (emailField.invalid && emailField.touched) {
+                  <span class="field-error">{{ 'con.err.email' | translate }}</span>
+                }
+              </div>
+              <div class="form-group">
+                <label for="eventDate">{{ 'con.f.date' | translate }}</label>
+                <input id="eventDate" name="eventDate" type="date" [(ngModel)]="formData.eventDate" required
+                  #dateField="ngModel" [class.invalid]="dateField.invalid && dateField.touched"/>
+                @if (dateField.invalid && dateField.touched) {
+                  <span class="field-error">{{ 'con.err.date' | translate }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="eventType">{{ 'con.f.type' | translate }}</label>
+              <select id="eventType" name="eventType" [(ngModel)]="formData.eventType" required
+                #eventTypeField="ngModel" [class.invalid]="eventTypeField.invalid && eventTypeField.touched">
+                <option value="" disabled selected>{{ 'con.f.typeSelect' | translate }}</option>
+                @for (et of eventTypeKeys; track et.value) {
+                  <option [value]="et.value">{{ et.key | translate }}</option>
+                }
+              </select>
+              @if (eventTypeField.invalid && eventTypeField.touched) {
+                <span class="field-error">{{ 'con.err.type' | translate }}</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="message">{{ 'con.f.msg' | translate }}</label>
+              <textarea id="message" name="message" [(ngModel)]="formData.message" rows="4"
+                [placeholder]="'con.f.msgHint' | translate" autocomplete="off"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary form-submit" [disabled]="isLoading()">
+              @if (isLoading()) {
+                <span class="spinner"></span>
+                {{ 'con.f.sending' | translate }}
+              } @else {
+                {{ 'con.f.submit' | translate }}
+                <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                  <path d="M1 5h14M10 1l5 4-5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              }
+            </button>
+
+            @if (sendError()) {
+              <p class="send-error">Wysyłka nie powiodła się. Spróbuj ponownie lub napisz bezpośrednio na nerodrive.giulia&#64;gmail.com</p>
+            }
+
+          </form>
+        } @else {
+          <div class="success-message">
+            <div class="success-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="15" stroke="#c9a455" stroke-width="1.2"/>
+                <path d="M10 16l4 4 8-8" stroke="#c9a455" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>{{ 'con.success.title' | translate }}</h3>
+            <p>{{ 'con.success.text' | translate }}</p>
+            <button class="btn-secondary" (click)="resetForm()">{{ 'con.success.again' | translate }}</button>
+          </div>
+        }
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo-nero">NERO</span>
+        <span class="footer-logo-drive">DRIVE</span>
+      </div>
+      <p class="footer-tagline">{{ 'footer.tagline' | translate }}</p>
+      <p class="footer-copy">&copy; {{ currentYear }} NERO DRIVE. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,157 @@
+<section class="gallery" id="gallery">
+  <div class="container">
+
+    <div class="gallery-header">
+      <span class="section-label reveal" scrollAnimate>{{ 'gal.label' | translate }}</span>
+      <h2 class="section-title reveal delay-1" scrollAnimate>
+        {{ 'gal.title1' | translate }} <em>{{ 'gal.title2' | translate }}</em>
+      </h2>
+      <div class="gold-line reveal delay-2" scrollAnimate></div>
+    </div>
+
+    <div class="gallery-filters reveal delay-3" scrollAnimate>
+      @for (f of filterKeys; track f.value) {
+        <button
+          class="filter-btn"
+          [class.active]="activeFilter() === f.value"
+          (click)="setFilter(f.value)"
+        >
+          {{ f.key | translate }}
+        </button>
+      }
+    </div>
+
+    <div class="gallery-grid" #galleryGrid (scroll)="onCarouselScroll(galleryGrid)">
+      @for (photo of filteredPhotos; track photo.src; let i = $index) {
+        <div
+          class="gallery-item reveal"
+          [class.gallery-item--wide]="photo.span === 'wide'"
+          [class.gallery-item--tall]="photo.span === 'tall'"
+          scrollAnimate
+          [style.transition-delay]="(i * 0.08) + 's'"
+        >
+          <div class="gallery-img-wrap">
+            @if (photo.video) {
+              <video
+                #tileVideo
+                class="gallery-img"
+                autoplay
+                muted
+                loop
+                playsinline
+                poster="images/car-side.jpg"
+              >
+                <source [src]="photo.src" type="video/mp4">
+                <track kind="captions" src="" label="Brak napisów">
+              </video>
+              <button
+                class="video-mute-btn"
+                (click)="toggleMute($event, tileVideo)"
+                [attr.aria-label]="videoMuted() ? 'Unmute' : 'Mute'"
+                [attr.title]="videoMuted() ? 'Unmute' : 'Mute'"
+              >
+                @if (videoMuted()) {
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                } @else {
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                }
+              </button>
+            } @else {
+              <img
+                [src]="photo.src"
+                [alt]="photo.alt"
+                [attr.title]="photo.alt"
+                class="gallery-img"
+                loading="lazy"
+                (error)="onImgError($event, 'gallery-img-wrap')"
+              />
+            }
+            <div class="gallery-placeholder">
+              <span>{{ photo.category }}</span>
+            </div>
+            <button
+              class="gallery-overlay"
+              (click)="openLightbox(i)"
+              [attr.aria-label]="'Otwórz: ' + photo.alt"
+              [attr.title]="photo.alt"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="carousel-dots">
+      @for (photo of filteredPhotos; track photo.src; let i = $index) {
+        <button
+          class="carousel-dot"
+          [class.active]="carouselIndex() === i"
+          (click)="scrollToSlide(i)"
+          [attr.aria-label]="'Slajd ' + (i + 1)"
+          [attr.title]="'Slajd ' + (i + 1)"
+        ></button>
+      }
+    </div>
+
+  </div>
+</section>
+
+@if (lightboxOpen()) {
+  <dialog
+    #lightboxDialog
+    class="lightbox"
+    aria-label="Powiększone zdjęcie"
+    (click)="closeLightbox()"
+    (keydown.escape)="closeLightbox()"
+    (close)="onDialogClose()"
+  >
+    <button class="lightbox-close" (click)="closeLightbox()" aria-label="Zamknij" title="Zamknij">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M2 2l16 16M18 2L2 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="lightbox-nav lightbox-nav--prev" (click)="$event.stopPropagation(); prevImage()" aria-label="Previous">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M12 4L5 10l7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="lightbox-content" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+      @if (filteredPhotos[lightboxIndex()].video) {
+        <video
+          class="lightbox-img"
+          controls
+          autoplay
+          playsinline
+        >
+          <source [src]="filteredPhotos[lightboxIndex()].src" type="video/mp4">
+          <track kind="captions" src="" label="Brak napisów">
+        </video>
+      } @else {
+        <img
+          [src]="filteredPhotos[lightboxIndex()].src"
+          [alt]="filteredPhotos[lightboxIndex()].alt"
+          [attr.title]="filteredPhotos[lightboxIndex()].alt"
+          class="lightbox-img"
+          (error)="onImgError($event, 'lightbox-content')"
+        />
+        <div class="lightbox-placeholder"><span>{{ filteredPhotos[lightboxIndex()].alt }}</span></div>
+      }
+      <p class="lightbox-caption">{{ filteredPhotos[lightboxIndex()].alt }}</p>
+    </div>
+    <button class="lightbox-nav lightbox-nav--next" (click)="$event.stopPropagation(); nextImage()" aria-label="Next">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M8 4l7 6-7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </dialog>
+}
