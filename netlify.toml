@@ -7,6 +7,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Use the Angular runtime plugin (v4 required for Angular 22)
+[[plugins]]
+  package = "@netlify/angular-runtime"
+
 # SPA fallback: let Angular handle any unknown path on the client
 [[redirects]]
   from = "/*"
