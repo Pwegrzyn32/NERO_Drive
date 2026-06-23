@@ -42,3 +42,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Original, full-resolution media masters (optimized via `npm run optimize:images`).
+# Kept out of the repo to avoid bloat; back these up separately.
+/source-images

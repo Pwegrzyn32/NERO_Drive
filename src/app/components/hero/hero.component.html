@@ -2,11 +2,16 @@
   <!-- Background -->
   <div class="hero-bg">
     <div class="hero-overlay"></div>
-    <img
-      class="hero-img"
-      src="images/hero-bg.jpg"
-      alt="Alfa Romeo Giulia Veloce Q4 – NERO DRIVE"
-    />
+    <picture>
+      <source srcset="images/hero-bg.avif" type="image/avif" />
+      <source srcset="images/hero-bg.webp" type="image/webp" />
+      <img
+        class="hero-img"
+        src="images/hero-bg.jpg"
+        alt="Alfa Romeo Giulia Veloce Q4 – NERO DRIVE"
+        fetchpriority="high"
+      />
+    </picture>
   </div>
 
   <!-- Content -->

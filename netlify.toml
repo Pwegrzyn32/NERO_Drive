@@ -16,3 +16,24 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# ── Caching ───────────────────────────────────────────────────
+# Hashed build assets (JS/CSS get a content hash in their name) never change,
+# so browsers can cache them forever -> repeat visits cost ~0 bandwidth.
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Images and video keep stable names, so cache for 30 days. Re-running
+# optimize:images and redeploying serves the new bytes after this window
+# (or immediately for first-time visitors).
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"

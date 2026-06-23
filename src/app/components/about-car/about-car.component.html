@@ -5,11 +5,16 @@
       <!-- Left: Image panel -->
       <div class="about-image-panel reveal-left" scrollAnimate>
         <div class="about-img-wrap">
-          <img
-            src="images/car-side.jpg"
-            alt="Alfa Romeo Giulia Veloce Q4"
-            class="about-img"
-          />
+          <picture>
+            <source srcset="images/car-side.avif" type="image/avif" />
+            <source srcset="images/car-side.webp" type="image/webp" />
+            <img
+              src="images/car-side.jpg"
+              alt="Alfa Romeo Giulia Veloce Q4"
+              class="about-img"
+              loading="lazy"
+            />
+          </picture>
           <div class="about-img-placeholder">
             <div class="car-placeholder-icon">
               <svg viewBox="0 0 80 36" fill="none" xmlns="http://www.w3.org/2000/svg">

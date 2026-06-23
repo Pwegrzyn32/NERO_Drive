@@ -1,4 +1,4 @@
-﻿import { Component, signal, inject, PLATFORM_ID, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+﻿import { Component, signal, inject, PLATFORM_ID, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ScrollAnimateDirective } from '../../directives/scroll-animate.directive';
 import { TranslatePipe } from '../../pipes/translate.pipe';
@@ -19,42 +19,17 @@ interface GalleryImage {
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
-export class GalleryComponent implements AfterViewInit {
+export class GalleryComponent {
   private readonly platformId = inject(PLATFORM_ID);
   ts = inject(TranslationService);
 
   activeFilter = signal('all');
   lightboxOpen = signal(false);
   lightboxIndex = signal(0);
-  videoMuted = signal(true);
   carouselIndex = signal(0);
 
   @ViewChild('galleryGrid') galleryGridRef!: ElementRef<HTMLElement>;
   @ViewChild('lightboxDialog') lightboxDialogRef!: ElementRef<HTMLDialogElement>;
-
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    const videos = this.galleryGridRef?.nativeElement?.querySelectorAll('video');
-    if (videos) {
-      Array.from(videos).forEach((v: HTMLVideoElement) => { v.muted = true; });
-    }
-  }
-
-  toggleMute(event: MouseEvent, video: HTMLVideoElement): void {
-    event.stopPropagation();
-    video.muted = !video.muted;
-    this.videoMuted.set(video.muted);
-  }
-
-  /** Re-mute every tile video and reset the mute indicator (e.g. after a filter change). */
-  private resetVideoMute(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    this.videoMuted.set(true);
-    const videos = this.galleryGridRef?.nativeElement?.querySelectorAll('video');
-    if (videos) {
-      Array.from(videos).forEach((v: HTMLVideoElement) => { v.muted = true; });
-    }
-  }
 
   // Filter keys for translation
   filterKeys = [
@@ -83,6 +58,11 @@ export class GalleryComponent implements AfterViewInit {
     return f === 'all' ? this.images : this.images.filter((img) => img.category === f);
   }
 
+  /** Base path without extension, e.g. 'images/gallery-1.jpg' -> 'images/gallery-1'. */
+  base(src: string): string {
+    return src.replace(/\.(jpe?g|png)$/i, '');
+  }
+
   setFilter(value: string): void {
     this.activeFilter.set(value);
     this.carouselIndex.set(0);
@@ -90,7 +70,6 @@ export class GalleryComponent implements AfterViewInit {
       if (this.galleryGridRef?.nativeElement) {
         this.galleryGridRef.nativeElement.scrollLeft = 0;
       }
-      this.resetVideoMute();
     }, 0);
   }
 

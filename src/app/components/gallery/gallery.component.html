@@ -32,46 +32,36 @@
         >
           <div class="gallery-img-wrap">
             @if (photo.video) {
-              <video
-                #tileVideo
-                class="gallery-img"
-                autoplay
-                muted
-                loop
-                playsinline
-                poster="images/car-side.jpg"
-              >
-                <source [src]="photo.src" type="video/mp4">
-                <track kind="captions" src="" label="Brak napisów">
-              </video>
-              <button
-                class="video-mute-btn"
-                (click)="toggleMute($event, tileVideo)"
-                [attr.aria-label]="videoMuted() ? 'Unmute' : 'Mute'"
-                [attr.title]="videoMuted() ? 'Unmute' : 'Mute'"
-              >
-                @if (videoMuted()) {
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                } @else {
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                }
-              </button>
+              <picture>
+                <source srcset="images/car-side-thumb.avif" type="image/avif" />
+                <source srcset="images/car-side-thumb.webp" type="image/webp" />
+                <img
+                  src="images/car-side-thumb.jpg"
+                  [alt]="photo.alt"
+                  [attr.title]="photo.alt"
+                  class="gallery-img"
+                  loading="lazy"
+                  (error)="onImgError($event, 'gallery-img-wrap')"
+                />
+              </picture>
+              <span class="video-play-badge" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 5v14l11-7z" fill="currentColor"/>
+                </svg>
+              </span>
             } @else {
-              <img
-                [src]="photo.src"
-                [alt]="photo.alt"
-                [attr.title]="photo.alt"
-                class="gallery-img"
-                loading="lazy"
-                (error)="onImgError($event, 'gallery-img-wrap')"
-              />
+              <picture>
+                <source [srcset]="base(photo.src) + '-thumb.avif'" type="image/avif" />
+                <source [srcset]="base(photo.src) + '-thumb.webp'" type="image/webp" />
+                <img
+                  [src]="base(photo.src) + '-thumb.jpg'"
+                  [alt]="photo.alt"
+                  [attr.title]="photo.alt"
+                  class="gallery-img"
+                  loading="lazy"
+                  (error)="onImgError($event, 'gallery-img-wrap')"
+                />
+              </picture>
             }
             <div class="gallery-placeholder">
               <span>{{ photo.category }}</span>
@@ -137,13 +127,17 @@
           <track kind="captions" src="" label="Brak napisów">
         </video>
       } @else {
-        <img
-          [src]="filteredPhotos[lightboxIndex()].src"
-          [alt]="filteredPhotos[lightboxIndex()].alt"
-          [attr.title]="filteredPhotos[lightboxIndex()].alt"
-          class="lightbox-img"
-          (error)="onImgError($event, 'lightbox-content')"
-        />
+        <picture>
+          <source [srcset]="base(filteredPhotos[lightboxIndex()].src) + '.avif'" type="image/avif" />
+          <source [srcset]="base(filteredPhotos[lightboxIndex()].src) + '.webp'" type="image/webp" />
+          <img
+            [src]="filteredPhotos[lightboxIndex()].src"
+            [alt]="filteredPhotos[lightboxIndex()].alt"
+            [attr.title]="filteredPhotos[lightboxIndex()].alt"
+            class="lightbox-img"
+            (error)="onImgError($event, 'lightbox-content')"
+          />
+        </picture>
         <div class="lightbox-placeholder"><span>{{ filteredPhotos[lightboxIndex()].alt }}</span></div>
       }
       <p class="lightbox-caption">{{ filteredPhotos[lightboxIndex()].alt }}</p>
