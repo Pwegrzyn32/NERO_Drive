@@ -133,7 +133,25 @@
                 [placeholder]="'con.f.msgHint' | translate" autocomplete="off"></textarea>
             </div>
 
-            <button type="submit" class="btn-primary form-submit" [disabled]="isLoading()">
+            <div class="form-consent" [class.invalid]="consentField.invalid && consentField.touched">
+              <label class="consent-check">
+                <input id="consent" name="consent" type="checkbox" required
+                  [(ngModel)]="formData.consent" #consentField="ngModel"/>
+                <span class="consent-box" aria-hidden="true">
+                  <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
+                    <path d="M1 4l3 3 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="consent-text">
+                  {{ 'con.consent.pre' | translate }}<a routerLink="/privacy-policy">{{ 'con.consent.link' | translate }}</a>{{ 'con.consent.post' | translate }}
+                </span>
+              </label>
+              @if (consentField.invalid && consentField.touched) {
+                <span class="field-error">{{ 'con.err.consent' | translate }}</span>
+              }
+            </div>
+
+            <button type="submit" class="btn-primary form-submit" [disabled]="isLoading() || contactForm.invalid">
               @if (isLoading()) {
                 <span class="spinner"></span>
                 {{ 'con.f.sending' | translate }}
@@ -168,16 +186,3 @@
     </div>
   </div>
 </section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="footer-logo-nero">NERO</span>
-        <span class="footer-logo-drive">DRIVE</span>
-      </div>
-      <p class="footer-tagline">{{ 'footer.tagline' | translate }}</p>
-      <p class="footer-copy">&copy; {{ currentYear }} NERO DRIVE. All rights reserved.</p>
-    </div>
-  </div>
-</footer>

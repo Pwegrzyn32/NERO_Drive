@@ -1,5 +1,6 @@
 import { Component, signal, inject, effect } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ScrollAnimateDirective } from '../../directives/scroll-animate.directive';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 import { BookingService } from '../../services/booking.service';
@@ -17,6 +18,8 @@ interface ContactForm {
   eventDate: string;
   eventType: string;
   message: string;
+  /** GDPR/RODO consent – required before the form can be submitted. */
+  consent: boolean;
   /** Honeypot field – must stay empty; bots tend to fill it. */
   website: string;
 }
@@ -24,7 +27,7 @@ interface ContactForm {
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [FormsModule, ScrollAnimateDirective, TranslatePipe],
+  imports: [FormsModule, RouterLink, ScrollAnimateDirective, TranslatePipe],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
@@ -51,8 +54,6 @@ export class ContactComponent {
     });
   }
 
-  currentYear = new Date().getFullYear();
-
   eventTypeKeys = [
     { key: 'evt.wedding',   value: 'Wesele' },
     { key: 'evt.prom',      value: 'Studniówka / Bal' },
@@ -69,6 +70,7 @@ export class ContactComponent {
     eventDate: '',
     eventType: '',
     message: '',
+    consent: false,
     website: '',
   };
 
@@ -100,7 +102,7 @@ export class ContactComponent {
       this.isLoading.set(false);
       this.submitted.set(true);
       form.reset();
-      this.formData = { name: '', phone: '', email: '', eventDate: '', eventType: '', message: '', website: '' };
+      this.formData = { name: '', phone: '', email: '', eventDate: '', eventType: '', message: '', consent: false, website: '' };
     }).catch(() => {
       this.isLoading.set(false);
       this.sendError.set(true);

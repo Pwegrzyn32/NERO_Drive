@@ -1,0 +1,153 @@
+// ============================================================
+// NERO DRIVE – Privacy Policy Page
+// ============================================================
+
+.policy {
+  background: var(--color-black);
+  // Offset for the fixed navbar so the heading isn't hidden underneath.
+  padding: 160px 0 var(--section-padding-v);
+  min-height: 100vh;
+}
+
+.policy-container {
+  max-width: 860px;
+}
+
+// ── Header ──────────────────────────────────────────────────
+.policy-header {
+  margin-bottom: 48px;
+}
+
+.policy-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 4px;
+
+  em {
+    font-style: normal;
+    color: var(--color-gold-light);
+  }
+}
+
+.policy-updated {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  color: var(--color-gray-dark);
+  margin-top: 18px;
+}
+
+// ── Lead paragraph ──────────────────────────────────────────
+.policy-lead {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.95;
+  color: var(--color-gray-light);
+  padding-bottom: 40px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--color-border);
+
+  strong {
+    color: var(--color-off-white);
+    font-weight: 600;
+  }
+}
+
+// ── Body sections ───────────────────────────────────────────
+.policy-body {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.policy-section {
+  h2 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--color-white);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  p {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--color-gray);
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+  }
+
+  li {
+    position: relative;
+    padding-left: 22px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--color-gray);
+    margin-bottom: 8px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 6px;
+      height: 1px;
+      background: var(--color-gold);
+    }
+  }
+
+  strong {
+    color: var(--color-off-white);
+    font-weight: 600;
+  }
+
+  a {
+    color: var(--color-gold);
+    border-bottom: 1px solid rgba(201, 164, 85, 0.3);
+    transition: color var(--transition), border-color var(--transition);
+
+    &:hover {
+      color: var(--color-gold-light);
+      border-color: var(--color-gold-light);
+    }
+  }
+}
+
+.policy-section--muted {
+  padding: 24px;
+  border: 1px dashed var(--color-border);
+  background: var(--color-dark);
+}
+
+.policy-tag {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gray-dark);
+}
+
+// ── Back link ───────────────────────────────────────────────
+.policy-back {
+  margin-top: 56px;
+}

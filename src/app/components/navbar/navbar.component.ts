@@ -1,5 +1,6 @@
 import { Component, signal, HostListener, inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 import { TranslationService } from '../../services/translation.service';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 
@@ -12,6 +13,7 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
 })
 export class NavbarComponent {
   ts = inject(TranslationService);
+  private readonly router = inject(Router);
   private readonly platformId = inject(PLATFORM_ID);
 
   isScrolled = signal(false);
@@ -33,12 +35,22 @@ export class NavbarComponent {
   }
 
   scrollTo(sectionId: string): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.closeMenu();
+    this.closeMenu();
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const scroll = () => {
       const el = document.getElementById(sectionId);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
       }
+    };
+
+    // Section anchors only exist on the home route. If we are elsewhere
+    // (e.g. the privacy policy page), navigate home first, then scroll.
+    if (this.router.url.split(/[?#]/)[0] === '/') {
+      scroll();
+    } else {
+      this.router.navigate(['/']).then(() => setTimeout(scroll, 100));
     }
   }
 }

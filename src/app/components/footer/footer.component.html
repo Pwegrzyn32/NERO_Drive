@@ -1,0 +1,22 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <span class="footer-logo-nero">NERO</span>
+        <span class="footer-logo-drive">DRIVE</span>
+      </div>
+      <p class="footer-tagline">{{ 'footer.tagline' | translate }}</p>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <a routerLink="/privacy-policy">{{ 'footer.privacy' | translate }}</a>
+        <span class="footer-nav-sep" aria-hidden="true">·</span>
+        <a href="/#contact" (click)="goToContact($event)">{{ 'footer.contact' | translate }}</a>
+      </nav>
+
+      <a class="footer-email" [href]="'mailto:' + email">{{ email }}</a>
+
+      <p class="footer-copy">&copy; {{ currentYear }} NERO DRIVE. {{ 'footer.rights' | translate }}</p>
+    </div>
+  </div>
+</footer>

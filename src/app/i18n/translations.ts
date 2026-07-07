@@ -182,11 +182,22 @@ export const TRANSLATIONS: Translations = {
   'con.f.submit':     { pl: 'Wyślij Zapytanie',       en: 'Request Booking' },
   'con.f.sending':    { pl: 'Wysyłanie…',             en: 'Sending…' },
 
+  'con.consent.pre':  {
+    pl: 'Wyrażam zgodę na przetwarzanie moich danych osobowych w celu udzielenia odpowiedzi na przesłane zapytanie zgodnie z ',
+    en: 'I consent to the processing of my personal data for the purpose of responding to my enquiry in accordance with the ',
+  },
+  'con.consent.link': { pl: 'Polityką Prywatności',   en: 'Privacy Policy' },
+  'con.consent.post': { pl: '.',                      en: '.' },
+
   'con.err.name':  { pl: 'Proszę podać imię i nazwisko.',     en: 'Please enter your name.' },
   'con.err.phone': { pl: 'Proszę podać numer telefonu.',      en: 'Please enter your phone number.' },
   'con.err.email': { pl: 'Proszę podać prawidłowy adres e-mail.', en: 'Please enter a valid email address.' },
   'con.err.date':  { pl: 'Proszę wybrać datę.',               en: 'Please select a date.' },
   'con.err.type':  { pl: 'Proszę wybrać rodzaj wydarzenia.',  en: 'Please select an event type.' },
+  'con.err.consent': {
+    pl: 'Zgoda jest wymagana, aby wysłać zapytanie.',
+    en: 'Consent is required in order to submit the enquiry.',
+  },
 
   'con.success.title': { pl: 'Wiadomość Wysłana',         en: 'Message Sent' },
   'con.success.text':  {
@@ -205,4 +216,7 @@ export const TRANSLATIONS: Translations = {
 
   // Footer
   'footer.tagline': { pl: 'Wedding & Event Car Experience', en: 'Wedding & Event Car Experience' },
+  'footer.privacy': { pl: 'Polityka Prywatności',           en: 'Privacy Policy' },
+  'footer.contact': { pl: 'Kontakt',                        en: 'Contact' },
+  'footer.rights':  { pl: 'Wszelkie prawa zastrzeżone.',    en: 'All rights reserved.' },
 };

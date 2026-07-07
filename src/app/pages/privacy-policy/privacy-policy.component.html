@@ -1,0 +1,311 @@
+<section class="policy">
+  <div class="container policy-container">
+
+    @if (lang() === 'pl') {
+      <!-- ============================ POLISH ============================ -->
+      <header class="policy-header">
+        <span class="section-label">Informacje Prawne</span>
+        <h1 class="policy-title">Polityka <em>Prywatności</em></h1>
+        <div class="gold-line"></div>
+        <p class="policy-updated">Ostatnia aktualizacja: {{ lastUpdated }}</p>
+      </header>
+
+      <p class="policy-lead">
+        Niniejsza Polityka Prywatności opisuje zasady przetwarzania i ochrony danych osobowych
+        przekazywanych przez użytkowników w związku z korzystaniem ze strony internetowej
+        <strong>NERO DRIVE</strong> (nerodrive.pl) oraz z formularza kontaktowego. Szanujemy Twoją
+        prywatność i przetwarzamy dane wyłącznie w niezbędnym zakresie, zgodnie z Rozporządzeniem
+        Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).
+      </p>
+
+      <article class="policy-body">
+        <section class="policy-section">
+          <h2>1. Administrator danych</h2>
+          <p>
+            Administratorem Twoich danych osobowych jest <strong>NERO DRIVE</strong>. W sprawach
+            dotyczących ochrony danych osobowych możesz skontaktować się z nami pod adresem:
+          </p>
+          <p>
+            E-mail: <a [href]="'mailto:' + controllerEmail">{{ controllerEmail }}</a>
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>2. Jakie dane zbieramy</h2>
+          <p>Za pośrednictwem formularza kontaktowego zbieramy następujące dane:</p>
+          <ul>
+            <li>imię i nazwisko,</li>
+            <li>adres e-mail,</li>
+            <li>numer telefonu,</li>
+            <li>data wydarzenia,</li>
+            <li>treść wiadomości (w tym rodzaj wydarzenia i inne informacje podane dobrowolnie).</li>
+          </ul>
+          <p>
+            Podanie danych jest dobrowolne, jednak niezbędne do udzielenia odpowiedzi na przesłane
+            zapytanie.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>3. Cel przetwarzania</h2>
+          <p>
+            Dane przesłane przez formularz kontaktowy są wykorzystywane <strong>wyłącznie w celu
+            udzielenia odpowiedzi na Twoje zapytanie</strong> oraz omówienia szczegółów potencjalnej
+            usługi. Nie wykorzystujemy ich do celów marketingowych ani nie udostępniamy podmiotom
+            trzecim w celach handlowych.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>4. Podstawa prawna (RODO)</h2>
+          <ul>
+            <li>
+              <strong>art. 6 ust. 1 lit. a RODO</strong> – zgoda osoby, której dane dotyczą, wyrażona
+              poprzez zaznaczenie zgody w formularzu kontaktowym;
+            </li>
+            <li>
+              <strong>art. 6 ust. 1 lit. b RODO</strong> – podjęcie działań na żądanie osoby, której
+              dane dotyczą, przed zawarciem ewentualnej umowy;
+            </li>
+            <li>
+              <strong>art. 6 ust. 1 lit. f RODO</strong> – prawnie uzasadniony interes administratora
+              polegający na obsłudze zapytań i prowadzeniu korespondencji.
+            </li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>5. Okres przechowywania danych</h2>
+          <p>
+            Dane przechowujemy przez okres niezbędny do udzielenia odpowiedzi i prowadzenia
+            korespondencji, a następnie do czasu przedawnienia ewentualnych roszczeń — nie dłużej
+            niż <strong>24 miesiące</strong> od ostatniego kontaktu, chyba że przepisy prawa wymagają
+            dłuższego okresu przechowywania. Dane przetwarzane na podstawie zgody przechowujemy do
+            czasu jej wycofania.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>6. Twoje prawa</h2>
+          <p>W związku z przetwarzaniem danych przysługują Ci następujące prawa:</p>
+          <ul>
+            <li>prawo dostępu do swoich danych oraz otrzymania ich kopii,</li>
+            <li>prawo do sprostowania (poprawiania) danych,</li>
+            <li>prawo do usunięcia danych („prawo do bycia zapomnianym”),</li>
+            <li>prawo do ograniczenia przetwarzania,</li>
+            <li>prawo do przenoszenia danych,</li>
+            <li>prawo do sprzeciwu wobec przetwarzania,</li>
+            <li>prawo do wycofania zgody w dowolnym momencie (bez wpływu na zgodność z prawem
+              przetwarzania dokonanego przed jej wycofaniem),</li>
+            <li>prawo do wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (UODO).</li>
+          </ul>
+          <p>
+            Aby skorzystać z powyższych praw, skontaktuj się z nami pod adresem
+            <a [href]="'mailto:' + controllerEmail">{{ controllerEmail }}</a>.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>7. Hosting i przekazywanie danych</h2>
+          <p>
+            Strona internetowa NERO DRIVE jest hostowana na platformie <strong>Netlify</strong>
+            (Netlify, Inc.). W związku z tym dane techniczne niezbędne do wyświetlenia strony (np.
+            adres IP, informacje o przeglądarce) mogą być przetwarzane przez dostawcę hostingu jako
+            podmiot przetwarzający. Netlify może przechowywać standardowe logi serwera. Przekazywanie
+            danych odbywa się zgodnie z obowiązującymi mechanizmami ochrony danych.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>8. Formularz kontaktowy</h2>
+          <p>
+            Wiadomości przesłane za pomocą formularza kontaktowego są wykorzystywane
+            <strong>wyłącznie w celu udzielenia odpowiedzi na przesłane zapytanie</strong>. Nie
+            tworzymy na ich podstawie profili, nie prowadzimy automatycznego podejmowania decyzji ani
+            nie wysyłamy niezamówionych informacji handlowych.
+          </p>
+        </section>
+
+        <!--
+          ========================= GOOGLE ANALYTICS =========================
+          Sekcja przygotowana na przyszłość. Może pozostać nieaktywna do czasu
+          faktycznego wdrożenia Google Analytics. Po włączeniu analityki należy
+          usunąć komentarz i uzupełnić szczegóły (zakres zbieranych danych,
+          okres przechowywania cookies, mechanizm zgody na cookies).
+        -->
+        <section class="policy-section policy-section--muted">
+          <h2>9. Google Analytics <span class="policy-tag">(nieaktywne)</span></h2>
+          <p>
+            Obecnie strona <strong>nie korzysta</strong> z Google Analytics ani innych narzędzi
+            analitycznych śledzących zachowanie użytkowników. W przypadku wdrożenia takich narzędzi
+            w przyszłości niniejsza sekcja zostanie zaktualizowana, a użytkownicy zostaną
+            poinformowani o zakresie zbieranych danych oraz poproszeni o wyrażenie odpowiedniej zgody
+            na pliki cookies.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>10. Kontakt</h2>
+          <p>
+            W sprawach związanych z ochroną danych osobowych oraz niniejszą Polityką Prywatności
+            prosimy o kontakt: <a [href]="'mailto:' + controllerEmail">{{ controllerEmail }}</a>.
+          </p>
+        </section>
+      </article>
+
+      <a routerLink="/" class="policy-back btn-secondary">← Powrót na stronę główną</a>
+    }
+
+    @else {
+      <!-- ============================ ENGLISH ============================ -->
+      <header class="policy-header">
+        <span class="section-label">Legal Information</span>
+        <h1 class="policy-title">Privacy <em>Policy</em></h1>
+        <div class="gold-line"></div>
+        <p class="policy-updated">Last updated: {{ lastUpdated }}</p>
+      </header>
+
+      <p class="policy-lead">
+        This Privacy Policy describes how personal data provided by users is processed and protected
+        in connection with the use of the <strong>NERO DRIVE</strong> website (nerodrive.pl) and its
+        contact form. We respect your privacy and process data only to the extent necessary, in
+        accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR).
+      </p>
+
+      <article class="policy-body">
+        <section class="policy-section">
+          <h2>1. Data Controller</h2>
+          <p>
+            The controller of your personal data is <strong>NERO DRIVE</strong>. For all matters
+            related to the protection of personal data you can contact us at:
+          </p>
+          <p>
+            Email: <a [href]="'mailto:' + controllerEmail">{{ controllerEmail }}</a>
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>2. What Data We Collect</h2>
+          <p>Through the contact form we collect the following data:</p>
+          <ul>
+            <li>full name,</li>
+            <li>email address,</li>
+            <li>phone number,</li>
+            <li>event date,</li>
+            <li>message content (including event type and any other information you choose to provide).</li>
+          </ul>
+          <p>
+            Providing this data is voluntary but necessary in order for us to respond to your enquiry.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>3. Purpose of Processing</h2>
+          <p>
+            Data submitted through the contact form is used <strong>solely to respond to your
+            enquiry</strong> and to discuss the details of a potential service. We do not use it for
+            marketing purposes and do not share it with third parties for commercial purposes.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>4. Legal Basis (GDPR)</h2>
+          <ul>
+            <li>
+              <strong>Art. 6(1)(a) GDPR</strong> – the consent of the data subject, given by ticking
+              the consent checkbox in the contact form;
+            </li>
+            <li>
+              <strong>Art. 6(1)(b) GDPR</strong> – taking steps at the request of the data subject
+              prior to entering into a possible agreement;
+            </li>
+            <li>
+              <strong>Art. 6(1)(f) GDPR</strong> – the legitimate interest of the controller in
+              handling enquiries and conducting correspondence.
+            </li>
+          </ul>
+        </section>
+
+        <section class="policy-section">
+          <h2>5. Data Retention Period</h2>
+          <p>
+            We store data for the period necessary to respond and conduct correspondence, and
+            afterwards until any potential claims become time-barred — no longer than
+            <strong>24 months</strong> from the last contact, unless the law requires a longer
+            retention period. Data processed on the basis of consent is stored until that consent is
+            withdrawn.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>6. Your Rights</h2>
+          <p>In connection with the processing of your data you have the following rights:</p>
+          <ul>
+            <li>the right to access your data and receive a copy of it,</li>
+            <li>the right to rectification (correction) of your data,</li>
+            <li>the right to erasure of your data (“the right to be forgotten”),</li>
+            <li>the right to restrict processing,</li>
+            <li>the right to data portability,</li>
+            <li>the right to object to processing,</li>
+            <li>the right to withdraw consent at any time (without affecting the lawfulness of
+              processing carried out before its withdrawal),</li>
+            <li>the right to lodge a complaint with the President of the Personal Data Protection
+              Office (UODO).</li>
+          </ul>
+          <p>
+            To exercise the above rights, please contact us at
+            <a [href]="'mailto:' + controllerEmail">{{ controllerEmail }}</a>.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>7. Hosting and Data Transfer</h2>
+          <p>
+            The NERO DRIVE website is hosted on the <strong>Netlify</strong> platform (Netlify, Inc.).
+            As a result, technical data necessary to display the site (such as IP address and browser
+            information) may be processed by the hosting provider acting as a data processor. Netlify
+            may retain standard server logs. Any data transfer takes place in accordance with the
+            applicable data protection mechanisms.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>8. Contact Form</h2>
+          <p>
+            Messages submitted through the contact form are used <strong>solely to respond to your
+            enquiry</strong>. We do not build profiles based on them, do not carry out automated
+            decision-making, and do not send unsolicited commercial communications.
+          </p>
+        </section>
+
+        <!--
+          ========================= GOOGLE ANALYTICS =========================
+          Placeholder section for the future. It can remain disabled until
+          Google Analytics is actually implemented. Once analytics is enabled,
+          remove this comment and complete the details (scope of collected data,
+          cookie retention period, cookie consent mechanism).
+        -->
+        <section class="policy-section policy-section--muted">
+          <h2>9. Google Analytics <span class="policy-tag">(disabled)</span></h2>
+          <p>
+            The website currently <strong>does not use</strong> Google Analytics or any other
+            analytics tools that track user behaviour. Should such tools be implemented in the future,
+            this section will be updated, users will be informed about the scope of the data collected,
+            and appropriate cookie consent will be requested.
+          </p>
+        </section>
+
+        <section class="policy-section">
+          <h2>10. Contact</h2>
+          <p>
+            For any matters related to the protection of personal data and this Privacy Policy, please
+            contact us at: <a [href]="'mailto:' + controllerEmail">{{ controllerEmail }}</a>.
+          </p>
+        </section>
+      </article>
+
+      <a routerLink="/" class="policy-back btn-secondary">← Back to home</a>
+    }
+
+  </div>
+</section>
